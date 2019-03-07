@@ -108,4 +108,7 @@
     <string name="seekbar_default_value_set">Value set to default of <xliff:g id="number">%d</xliff:g></string>
     <string name="seekbar_default_value_already_set">Default value is already set</string>
     <string name="seekbar_default_string">Default</string>
+
+    <!-- Advanced Controls -->
+    <string name="advanced_controls_title">Advanced Controls</string>
 </resources>
