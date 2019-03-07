@@ -36,8 +36,12 @@ import com.android.internal.logging.nano.MetricsProto;
 
 public class PowerMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
+    public static final String TAG = "Misc";
+    
     private static final String KEY_LOCKDOWN_IN_POWER_MENU = "lockdown_in_power_menu";
     private static final int MY_USER_ID = UserHandle.myUserId();
+    private static final String KEY_DEVICE_PART = "advanced_controls";
+    private static final String KEY_DEVICE_PART_PACKAGE_NAME = "com.thht.settings.device";
 
     private SwitchPreference mPowerMenuLockDown;
 
@@ -45,6 +49,11 @@ public class PowerMenu extends SettingsPreferenceFragment implements Preference.
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.power_menu);
+        
+        // Advanced Controls
+        if (!com.havoc.settings.preferences.Utils.isPackageInstalled(getActivity(), KEY_DEVICE_PART_PACKAGE_NAME)) {
+            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_PART));
+        }
 
         final PreferenceScreen prefSet = getPreferenceScreen();
         final LockPatternUtils lockPatternUtils = new LockPatternUtils(getActivity());
